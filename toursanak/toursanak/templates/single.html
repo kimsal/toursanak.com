@@ -7,7 +7,7 @@
             We want you to spend less on office rent and to stop.
             </a>
         </label>
-    <a style="color: white;padding-left:17%;"  href="/contact">
+    <a style="color: white;padding-left:17%;padding-top:-5%;"  href="/contact">
         <button  class="btn btn-default"  style="background-color: rgba(0, 0, 0, 0.05);color: #ffffff;"
                 class="btn btn-info btn-lg">
             <i class="fa fa-1x fa-envelope" aria-hidden="true"></i>
@@ -119,7 +119,7 @@
                 {% for tab in tabs %}
                        <script> //alert('d'); 
                         help++;
-                        var tabdetail="{{ tab.description }}";
+                        var tabdetail="{{ tab.descript }}";
                         //alert(tabdetail);
                         var arr_detail_line=tabdetail.split(',;;;');
                         var arr_detail=[];
@@ -149,24 +149,24 @@
                            <!--slide is here-->
                         </div>
                         <script type="text/javascript">
-                            var images="{{tour.imagename}}".split(',');
-                            for(var i=0;i<images.length;i++){
-                               
-                                if(i==0)
-                                    document.getElementById("slide_image").innerHTML+='<div class="item active"><img style="width: 98%;border-radius: 3px;padding-top: 0%;" src="/'+images[i]+'" alt=""></div>';
-                                else
-                                    document.getElementById("slide_image").innerHTML+='<div class="item slide_img"><img class="img-responsive " style="width: 100%;border-radius: 3px;padding-top: 0%;" src="/'+images[i]+'" alt="Chania"></div>';
-                            }
+                                var images="{{tour.imagename}}".split(',');
+                                for(var i=0;i<images.length;i++){
+                                    //alert(images[i]);
+                                    if(i==0)
+                                        document.getElementById("slide_image").innerHTML+='<div class="item active slide_img"><img class="img-responsive " style="width: 100%;border-radius: 3px;padding-top: 0%;" src="/'+images[i]+'" alt="Chania"></div>';
+                                    else
+                                        document.getElementById("slide_image").innerHTML+='<div class="item slide_img"><img class="img-responsive " style="width: 100%;border-radius: 3px;padding-top: 0%;" src="/'+images[i]+'" alt="Chania"></div>';
+                                }
                         </script>
-                    </div>
+                </div>
 
 
 
-                <!-- <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script> -->
+                <script src="http://code.jquery.com/jquery-1.12.2.min.js"></script>
                 {% endfor %}
                 <!--end slide-->
                {% for schedule in schedules %}
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-box">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-booking">
                     <a href="/{{tour_id}}/{{ schedule.id }}/booking/" >
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 package-box">
                             <h2>
@@ -189,33 +189,35 @@
                 {% endfor %}
             <!--small image show-->
             <div class="clearfix"></div>
-            <center> <label style="font-weight: bold;">Related tours:</label></center>
+            <center> <label style="font-weight: bold;text-decoration: underline;">SIMILAR TRIPS:</label></center>
             {% for related in related_posts %}
 
-                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-box hidden-xs" style="padding: 0px;">
-                    <a href="{% url 'single' related.slug %}">
-                        <div class="text-xs-center">
-                             {% if related.feature_image == none %}
-                              <img src="/static/images/notfound.png" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
-                                <div class="carousel-caption">
-                                <a href="{% url 'single' related.slug %}" style="font-size: 14px; color: white;margin-top: 30px;">
-                                {{ related.title }}
-                                <!-- <span class="badge">${{related.price}}</span> --></a><br>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-box hidden-xs" style="padding: 0px;">
+                            <a href="{% url 'single' related.slug %}">
+                                <div class="text-xs-center">
+                                     {% if related.imagename == none %}
+                                      <img src="/static/images/notfound.png" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
+                                    <img src="/{{related.imagename}}" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
+                                    <div class="carousel-caption">
+                                        <a href="{% url 'single' related.slug %}" style="font-size: 14px; color: white;margin-top: 30px;">
+                                        {{ related.title }}
+                                        <!-- <span class="badge">${{related.price}}</span> --></a><br>
+                                    </div>
+
+                                    {% else %}
+                                        <img src="/{{related.imagename}}" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
+                                        <div class="carousel-caption">
+                                            <a href="{% url 'single' related.slug %}" style="font-size: 11px; color: white;margin-top: 30px;">
+                                          <a href="#" style="font-size: 14px;font-weight: bold; color: white;margin-top: 30px;">
+                                            {{ related.title }}
+                                            <!-- <span class="badge">${{related.price}}</span> --></a><br>
+                                        </div>
+
+                                     {%endif%}   
+
                                 </div>
-
-                            {% else %}
-                                <img src="/{{related.feature_image}}" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
-                                <div class="carousel-caption">
-                                  <a href="/{{related.slug}}" style="font-size: 14px;font-weight: bold; color: white;margin-top: 30px;">
-                                    {{ related.title }}
-                                    <!-- <span class="badge">${{related.price}}</span> --></a><br>
-                                </div>
-
-                             {%endif%}   
-
+                            </a>
                         </div>
-                    </a>
-                </div>
                     <style type="text/css">
                             .img-thumbnail{
                                 padding: 0px;         
@@ -228,17 +230,17 @@
 </div>
     <br>
     <div class="myline" >
-        <label>Latest Tours</label>
+        <label>Featured Trips</label>
     </div>
         {% for related in related_footer %}
             <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 " style="padding: 0px;margin-left: -6px;">
-                <a href="/{{related.slug}}">
+                <a href="#">
                 {% if related.feature_image == none %}
                      <div class="text-xs-center">
                         <img src="/static/images/notfound.png" style="" class="img-responsive img-thumbnail1 " alt="Not found ">
                         <div class="carousel-caption">
                             <a href="{% url 'single' related.slug %}" style="font-size: 11px; color: white;margin-top: 30px;">
-                          <a href="/{{related.slug}}" style="font-size: 12px;color:#6c6060;margin-top: 30px;">
+                          <a href="#" style="font-size: 12px;color:#6c6060;margin-top: 30px;">
                             {{ related.title }}
                            <!--  <span class="badge">${{related.price}}</span> --></a><br>
                         </div>
