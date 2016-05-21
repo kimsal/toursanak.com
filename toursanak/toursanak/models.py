@@ -30,11 +30,11 @@ class Page(models.Model):
   		return self.name
 class Tour(models.Model):
 	id=models.AutoField(primary_key=True)
-	title=models.TextField(db_index=True)
+	title=models.CharField(max_length=400,db_index=True)
 	feature_image=models.ImageField(upload_to = 'static/images/feature_image/')
 	banner=models.ImageField(upload_to = 'static/images/banner/',blank=True,null=True)
 	slug = models.SlugField(editable=False,unique=True)
-	Short_description=models.CharField(db_index=True,max_length=200)
+	short_description=models.CharField(db_index=True,max_length=200)
 	description=models.TextField(db_index=True,null=True,blank=True)
 	keywords=models.TextField(db_index=True,null=True,blank=True)
 	category=models.ForeignKey(Category, on_delete=models.CASCADE)

@@ -10,8 +10,8 @@
     {% if request.resolver_match.url_name == 'single' %}
         {% for tour in tours %}
             <title>{{tour.title}}|Toursanak</title>
-            <meta name="description" content="{{tour.description}}">
-            <meta name="keywords" content="{{tour.keyword}}">
+            <meta name="description" content="{{tour.short_description}}">
+            <meta name="keywords" content="{{tour.keywords}}">
             <meta name="author" content="toursanak">
             <link rel="stylesheet" href="/static/css/singl1.css" media="screen">
             <link href="/static/css/style1.css" rel="stylesheet" media="screen">

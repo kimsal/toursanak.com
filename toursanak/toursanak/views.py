@@ -29,20 +29,21 @@ def contact(request):
 	return render(request,'contact.html',context)
 def single(request, slug):
 	#tours=Tour.objects.filter(slug=slug)
-	tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.Short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map, GROUP_CONCAT(toursanak_image.imagename) as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
+	tours=Tour.objects.raw("select toursanak_tour.id,toursanak_tour.title,toursanak_tour.short_description,toursanak_tour.banner,toursanak_tour.description,toursanak_tour.keywords,toursanak_tour.feature_image,toursanak_tour.map, array_to_string(array_agg(toursanak_image.imagename), ',')  as imagename from toursanak_tour, toursanak_image where toursanak_tour.id=toursanak_image.tour_id AND toursanak_tour.slug='{}' group by toursanak_tour.id".format(slug))
 	tab=0
 	related=''
 	for tour in tours:
 		tab=tour.id
 		related=tour.category_id
-	related_posts=Tour.objects.raw("select * from toursanak_tour LEFT JOIN toursanak_image on toursanak_tour.id=toursanak_image.tour_id where category_id={} GROUP BY toursanak_tour.id ORDER BY toursanak_tour.id DESC limit 4".format(related))
+	related_posts=Tour.objects.raw("select * from toursanak_tour where category_id={} ORDER BY toursanak_tour.id DESC limit 4".format(related))
 	#return HttpResponse(schedule.query)
 	request.session['name'] = 'name1'
 	related_footer=Tour.objects.raw("select * from toursanak_tour ORDER BY id DESC LIMIT 4");
 	if tab!=0:
+		tabs=''
 		schedules=Schedule.objects.raw("select * from toursanak_schedule where tour_id={}".format(tab))
 		#tabs=Tab.objects.raw("select toursanak_tab.id,toursanak_tab.title,GROUP_CONCAT(CONCAT(toursanak_tabdetail.title,'$$',toursanak_tabdetail.description)) as tabdetail from toursanak_tab,toursanak_tabdetail where toursanak_tab.id=toursanak_tabdetail.tab_id AND toursanak_tab.tour_id={}".format(tab))
-		tabs=Tab.objects.raw("select id,title,(select GROUP_CONCAT(';;;',toursanak_tabdetail.title,'$$$',toursanak_tabdetail.description) as tabdescription  from toursanak_tabdetail INNER JOIN toursanak_tab ON toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.id=t1.id) as descript from toursanak_tab as t1 where tour_id={}".format(tab))
+		#tabs=Tab.objects.raw("select id,title,(select GROUP_CONCAT(';;;',toursanak_tabdetail.title,'$$$',toursanak_tabdetail.description) as tabdescription  from toursanak_tabdetail INNER JOIN toursanak_tab ON toursanak_tab.id=toursanak_tabdetail.tab_id where toursanak_tab.id=t1.id) as descript from toursanak_tab as t1 where tour_id={}".format(tab))
 		#return HttpResponse(tabs.query)
 		return render(request,'single.html',{'tours':tours,'schedules':schedules,'tabs':tabs,'related_posts':related_posts,'related_footer':related_footer,'tour_id':tab})
 	else:

@@ -129,23 +129,23 @@ STATICFILES_DIRS=[
 ]
 #copy to
 STATIC_ROOT=os.path.join(os.path.dirname(BASE_DIR),"static_out")
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'toursanak',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-    }
-}
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': 'postgres',
-#         'PASSWORD': '123',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
+#         'ENGINE': 'django.db.backends.mysql', 
+#         'NAME': 'toursanak',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'toursanak',
+        'USER': 'toursanak',
+        'PASSWORD': 'toursanak',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}

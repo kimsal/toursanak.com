@@ -38,7 +38,7 @@
                     </label>
                     <br/>
                     <label class="boxbanner1">
-                        {{tour.Short_description}}
+                        {{tour.short_description}}
                     </label>
                 </center>
             </div>
@@ -52,7 +52,7 @@
                         </label>
                         <br/>
                         <label class="boxbanner1">
-                            {{tour.Short_description}}
+                            {{tour.short_description}}
                         </label>
                     </center>
                 </div>
@@ -71,7 +71,7 @@
                 </label>
                 <br/>
                 <label class="boxbanner1">
-                    {{tour.Short_description}}
+                    {{tour.short_description}}
                 </label>
             </center>
         </div>
@@ -195,9 +195,8 @@
                         <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 right-box hidden-xs" style="padding: 0px;">
                             <a href="{% url 'single' related.slug %}">
                                 <div class="text-xs-center">
-                                     {% if related.imagename == none %}
+                                     {% if related.feature_image == none %}
                                       <img src="/static/images/notfound.png" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
-                                    <img src="/{{related.imagename}}" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
                                     <div class="carousel-caption">
                                         <a href="{% url 'single' related.slug %}" style="font-size: 14px; color: white;margin-top: 30px;">
                                         {{ related.title }}
@@ -205,10 +204,9 @@
                                     </div>
 
                                     {% else %}
-                                        <img src="/{{related.imagename}}" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
+                                        <img src="/{{related.feature_image}}" style="height: 120px;" class="img-responsive img-thumbnail mythumnail" alt="Not found ">
                                         <div class="carousel-caption">
                                             <a href="{% url 'single' related.slug %}" style="font-size: 11px; color: white;margin-top: 30px;">
-                                          <a href="#" style="font-size: 14px;font-weight: bold; color: white;margin-top: 30px;">
                                             {{ related.title }}
                                             <!-- <span class="badge">${{related.price}}</span> --></a><br>
                                         </div>
