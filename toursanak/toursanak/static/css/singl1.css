@@ -172,10 +172,10 @@ div.caption{
 /*.mycontainer{*/
 /*padding-left: 50px;*/
 /*}*/
-.container{
+/*.container{
     width: 80%;
     margin: 0 auto;
-}
+}*/
 div.col-sm-4{
     margin:10px;
     border: 0px;
@@ -202,9 +202,6 @@ p{
     margin-top: 50px;
     min-height: 50px;
     clear: both;
-    /*position: fixed;*/
-    /*z-index: 10;*/
-    /*margin-top:0;*/
 }
 .myfix{
     position: fixed;
@@ -285,6 +282,10 @@ title:hover{
 }
 .right-box{
     margin-top: 2px;
+}
+.right-booking{
+   margin-left: -6px;
+padding-left: 6px;
 }
 tr td{
    font-family: "NHaasGroteskDSW01-75Bd","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -370,6 +371,7 @@ a.carousel-control.left {
     -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     margin-top: 13px;
+    height: 134px;
 
 }
 .myline{

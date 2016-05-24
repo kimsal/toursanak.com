@@ -137,10 +137,7 @@ div.caption{
 /*.mycontainer{*/
     /*padding-left: 50px;*/
 /*}*/
-.container{
-    width: 80%;
-    margin: 0 auto;
-}
+
 div.col-sm-4{
     margin:10px;
     border: 0px;
@@ -179,3 +176,14 @@ p{
 .scrollToTop:hover{
     text-decoration:none;
 }
+.mytitle{
+    
+      width: 94%;
+margin-left: 11px;
+padding-top: 0%;
+margin-top: 1%;
+line-height: 46px;
+border-radius: 3px;
+border: 1px solid #cdcbcb;
+
+    }

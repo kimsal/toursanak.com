@@ -1,3 +1,7 @@
+#alias guni.tellsela='/var/www/tellsela.com/gunicorn_start.sh &'
+
+#alias guni.procambodia='/var/www/procambodia.com/gunicorn_start.sh &'
+
 from django.db import models
 #to migrate with build in model:
 from django.contrib.auth.models import User
